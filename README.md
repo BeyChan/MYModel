@@ -1,11 +1,10 @@
 # MYModel
+两种用法
+用法一:
 /**
  Provide some data-model method:
  提供一些数据模型方法
- 
- * Convert json to any object, or convert any object to json.
- * Set object properties with a key-value dictionary (like KVC).
- * Implementations of `NSCoding`, `NSCopying`, `-hash` and `-isEqual:`.
+
  *转化json为任何对象，或转换任何对象为json
  通过key-value字典设置对象属性(像KVC)
  实现"NSCoding","NSCopying","-hash"和"isEqual:"
@@ -54,3 +53,18 @@
  @end
  
  */
+ 
+ 
+用法二:
+继承MYBaseModel
+一般命名只要不是id,均可以自动转换成模型
+
+@interface MYTestModel :MYBaseModel <NSCoding, NSCopying>
+ @property (nonatomic, copy) NSString *name;
+ @property (nonatomic, copy) NSString *userId;
+ @end
+ 
+ @implementation MYTestModel
+ @end
+ 
+ MYTestModel *model = [[MYTestModel alloc]initWithDataDic:@{@"name":@"json",@"userId":234}];
